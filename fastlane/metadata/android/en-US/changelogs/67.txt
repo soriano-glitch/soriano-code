@@ -1,0 +1,3 @@
+- Rebranded the app as Soriano Code with a new name, icon, and repository links.
+- Restored the release build pipeline and added signed GitHub and self-hosted F-Droid APKs.
+- GitHub and self-hosted F-Droid builds use a new signing key. Existing installs from those sources must export app data and reinstall.
