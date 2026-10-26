@@ -1,0 +1,21 @@
+package com.sorianocode.startup
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import com.sorianocode.SorianoCodeApplication
+
+/** Restores the local runtime after Android terminates it during a reboot or APK replacement. */
+class RuntimeAutoStartReceiver : BroadcastReceiver() {
+    override fun onReceive(
+        context: Context,
+        intent: Intent,
+    ) {
+        if (!isRuntimeAutoStartBroadcast(intent.action)) return
+        val app = context.applicationContext as? SorianoCodeApplication ?: return
+        RuntimeAutoStartInitializer.restoreIfConfigured(app, RuntimeAutoStartTrigger.BootOrPackageReplaced)
+    }
+}
+
+internal fun isRuntimeAutoStartBroadcast(action: String?): Boolean =
+    action == Intent.ACTION_BOOT_COMPLETED || action == Intent.ACTION_MY_PACKAGE_REPLACED
