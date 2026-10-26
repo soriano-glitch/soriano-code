@@ -49,7 +49,7 @@ apksigner verify --print-certs app/build/outputs/apk/github/release/app-github-r
 - `namespace` is `com.sorianocode` and controls Kotlin package names, `R`, and `BuildConfig`.
 - `applicationId` stays `com.yugahashimoto.andcode`. Android treats it as the installed app identity.
 - Never change `applicationId` for an existing release. Doing so creates a separate app, blocks in-place updates, loses access to the old data directory, requires new Firebase registration, and needs new Play and F-Droid listings.
-- Always publish a `versionCode` greater than the previous release and sign with the existing release key.
+- Always publish a `versionCode` greater than the previous release. Sign with the key that matches the existing distribution line; v1.2.28 intentionally starts a new line (see below).
 - `google-services.json`, benchmark targets, F-Droid metadata paths, and battery scripts must use the same `applicationId`.
 
 ## Signing key transition (v1.2.28)
