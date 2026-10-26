@@ -61,9 +61,10 @@ The v1.2.28 release key has certificate SHA-256
 `f5fc56a9af5460e40e06761a6c2957d96cc1d987a816601a6137c606f062952b`.
 
 Existing installs signed with the previous key cannot update in place. Users must
-export their app data and reinstall, or keep the old installation. The new key does
-not affect Google Play installs signed by Play App Signing, but the GitHub and
-self-hosted F-Droid APKs use the new key.
+copy out any workspace files they need, uninstall, and reinstall. Settings and
+sessions may not carry over. Users can keep the old installation instead. The new
+key does not affect Google Play installs signed by Play App Signing, but the GitHub
+and self-hosted F-Droid APKs use the new key.
 
 The F-Droid metadata snapshot below describes v1.2.28 and uses the new
 `AllowedAPKSigningKeys` fingerprint. The live fdroiddata merge request still
