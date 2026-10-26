@@ -17,8 +17,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import com.sorianocode.SorianoCodeApplication
 import com.sorianocode.R
+import com.sorianocode.SorianoCodeApplication
 import com.sorianocode.core.api.PromptRequest
 import com.sorianocode.core.locale.AppLanguage
 import kotlinx.coroutines.Dispatchers

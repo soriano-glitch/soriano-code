@@ -67,9 +67,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.sorianocode.SorianoCodeApplication
 import com.sorianocode.BuildConfig
 import com.sorianocode.R
+import com.sorianocode.SorianoCodeApplication
 import com.sorianocode.core.UrlLauncher
 import com.sorianocode.core.diagnostics.CrashLog
 import com.sorianocode.data.settings.DraftRepository
@@ -122,8 +122,8 @@ import com.sorianocode.ui.navigation.scheduleDetailRoute
 import com.sorianocode.ui.navigation.scheduleEditRoute
 import com.sorianocode.ui.navigation.settingsNavGraph
 import com.sorianocode.ui.navigation.workspaceNavGraph
-import com.sorianocode.ui.theme.SorianoCodeTheme
 import com.sorianocode.ui.theme.AppTheme
+import com.sorianocode.ui.theme.SorianoCodeTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async

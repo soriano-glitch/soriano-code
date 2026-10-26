@@ -42,8 +42,8 @@ import com.sorianocode.R
 import com.sorianocode.core.api.PullRequestRef
 import com.sorianocode.core.api.PullRequestState
 import com.sorianocode.core.api.PullRequestStatus
-import com.sorianocode.ui.theme.SorianoCodeTheme
 import com.sorianocode.ui.theme.LocalThemeColors
+import com.sorianocode.ui.theme.SorianoCodeTheme
 
 /** Pull requests shown before the rest are folded behind the expand chip. */
 private const val COLLAPSED_PULL_REQUEST_COUNT = 1

@@ -13,9 +13,9 @@ import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.sorianocode.SorianoCodeApplication
 import com.sorianocode.MainActivity
 import com.sorianocode.R
+import com.sorianocode.SorianoCodeApplication
 import com.sorianocode.core.api.OpenCodeEvent
 import com.sorianocode.core.api.PromptRequest
 import com.sorianocode.data.schedule.Schedule
