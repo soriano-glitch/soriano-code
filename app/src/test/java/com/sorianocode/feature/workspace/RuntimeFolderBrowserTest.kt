@@ -44,7 +44,7 @@ class RuntimeFolderBrowserTest {
         File(workspace, "soriano-code").mkdirs()
         File(workspace, "Notes").mkdirs()
 
-        assertEquals(listOf("soriano-code", "Notes"), browser.children("/workspace"))
+        assertEquals(listOf("Notes", "soriano-code"), browser.children("/workspace"))
     }
 
     @Test
