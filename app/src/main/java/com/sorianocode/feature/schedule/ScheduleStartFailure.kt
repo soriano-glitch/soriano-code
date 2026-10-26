@@ -1,8 +1,8 @@
 package com.sorianocode.feature.schedule
 
 import android.util.Log
-import com.sorianocode.SorianoCodeApplication
 import com.sorianocode.R
+import com.sorianocode.SorianoCodeApplication
 import com.sorianocode.data.schedule.Schedule
 
 private const val TAG = "ScheduleStart"

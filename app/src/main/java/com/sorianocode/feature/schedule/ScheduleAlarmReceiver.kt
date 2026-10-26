@@ -3,8 +3,8 @@ package com.sorianocode.feature.schedule
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.sorianocode.SorianoCodeApplication
 import com.sorianocode.R
+import com.sorianocode.SorianoCodeApplication
 
 /**
  * Wakes the app when a schedule's alarm fires, and re-arms all alarms after boot

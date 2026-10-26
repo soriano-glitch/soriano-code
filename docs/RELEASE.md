@@ -49,8 +49,24 @@ apksigner verify --print-certs app/build/outputs/apk/github/release/app-github-r
 - `namespace` is `com.sorianocode` and controls Kotlin package names, `R`, and `BuildConfig`.
 - `applicationId` stays `com.yugahashimoto.andcode`. Android treats it as the installed app identity.
 - Never change `applicationId` for an existing release. Doing so creates a separate app, blocks in-place updates, loses access to the old data directory, requires new Firebase registration, and needs new Play and F-Droid listings.
-- Always publish a `versionCode` greater than the previous release and sign with the existing release key.
+- Always publish a `versionCode` greater than the previous release. Sign with the key that matches the existing distribution line; v1.2.28 intentionally starts a new line (see below).
 - `google-services.json`, benchmark targets, F-Droid metadata paths, and battery scripts must use the same `applicationId`.
+
+## Signing key transition (v1.2.28)
+
+v1.2.28 starts a new APK signing lineage. The previous release key had certificate
+SHA-256 `f036e07002d8c2e6a5a64000f1211398d4831ff37cf280456a9a26d2f12617df`.
+The v1.2.28 release key has certificate SHA-256
+`f5fc56a9af5460e40e06761a6c2957d96cc1d987a816601a6137c606f062952b`.
+
+Existing installs signed with the previous key cannot update in place. Users must
+export their app data and reinstall, or keep the old installation. The new key does
+not affect Google Play installs signed by Play App Signing, but the GitHub and
+self-hosted F-Droid APKs use the new key.
+
+The F-Droid metadata snapshot below still describes v1.2.27 and keeps the old
+`AllowedAPKSigningKeys` fingerprint. Update that field to the new fingerprint when
+submitting v1.2.28 to fdroiddata.
 
 ## Pre-release checklist
 

@@ -24,12 +24,12 @@ import androidx.compose.ui.unit.dp
 import com.sorianocode.core.ProjectLinks
 import com.sorianocode.core.locale.AppLanguage
 import com.sorianocode.core.notification.RuntimeNotificationHelper
-import com.sorianocode.feature.assistant.SorianoCodeVoiceInteractionService
 import com.sorianocode.feature.assistant.AssistantStatus
+import com.sorianocode.feature.assistant.SorianoCodeVoiceInteractionService
 import com.sorianocode.feature.support.GitHubStarPromptDialog
 import com.sorianocode.feature.support.openProjectLink
-import com.sorianocode.ui.SorianoCodeApp
 import com.sorianocode.ui.ChatDeepLink
+import com.sorianocode.ui.SorianoCodeApp
 import java.util.UUID
 
 class MainActivity : ComponentActivity() {
