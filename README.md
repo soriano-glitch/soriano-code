@@ -20,18 +20,7 @@ Soriano Code is a native Android GUI app that brings AI coding agents to your ph
 
 ### Screenshots
 
-<table>
-  <tr>
-    <td align="center"><img src="screenshots/navigation-drawer.jpg" width="180" alt="Navigation drawer with agents, projects, and recent chats"><br><em>Navigation drawer</em></td>
-    <td align="center"><img src="screenshots/model-picker.jpg" width="180" alt="Model and runtime picker with searchable favorite models"><br><em>Model &amp; runtime picker</em></td>
-    <td align="center"><img src="screenshots/repository-chat.jpg" width="180" alt="Chat with an agent inspecting the Soriano Code repository"><br><em>Repository chat</em></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="screenshots/image-generation.jpg" width="180" alt="Agent-generated image displayed inside a conversation"><br><em>Image generation</em></td>
-    <td align="center"><img src="screenshots/schedules.jpg" width="180" alt="Scheduled prompt with a daily run enabled"><br><em>Schedules</em></td>
-    <td align="center"><img src="screenshots/run-result.jpg" width="180" alt="Completed scheduled run with an option to open the chat"><br><em>Run result</em></td>
-  </tr>
-</table>
+
 
 </div>
 
@@ -42,22 +31,28 @@ Soriano Code is a native Android GUI app that brings AI coding agents to your ph
 
 ## Table of Contents
 
-- [Supported Agents](#supported-agents)
-- [Features](#features)
-- [Antigravity](#antigravity)
-- [Codex](#codex)
-- [Remote OpenCode](#remote-opencode)
-- [Screens](#screens)
-- [Quick Start](#quick-start)
-- [Security](#security)
-- [On-Device Runtime Details](#on-device-runtime-details)
-- [Handoff (Runtime Switching Mid-Conversation)](#handoff-runtime-switching-mid-conversation)
-- [Connecting to OpenCode Desktop](#connecting-to-opencode-desktop)
-- [Building from Source](#building-from-source)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [Legal & Third-Party Software](#legal--third-party-software)
-- [License](#license)
+- [Soriano Code](#soriano-code)
+    - [Screenshots](#screenshots)
+  - [Table of Contents](#table-of-contents)
+  - [Supported Agents](#supported-agents)
+  - [Features](#features)
+  - [Antigravity](#antigravity)
+  - [Codex](#codex)
+  - [Remote OpenCode](#remote-opencode)
+  - [Screens](#screens)
+  - [Quick Start](#quick-start)
+    - [Option A: On-Device (no PC needed)](#option-a-on-device-no-pc-needed)
+    - [Option B: Remote PC](#option-b-remote-pc)
+    - [QR Code Setup](#qr-code-setup)
+  - [Security](#security)
+  - [On-Device Runtime Details](#on-device-runtime-details)
+  - [Handoff (Runtime Switching Mid-Conversation)](#handoff-runtime-switching-mid-conversation)
+  - [Connecting to OpenCode Desktop](#connecting-to-opencode-desktop)
+  - [Building from Source](#building-from-source)
+  - [Documentation](#documentation)
+  - [Contributing](#contributing)
+  - [Legal \& Third-Party Software](#legal--third-party-software)
+  - [License](#license)
 
 ## Supported Agents
 
