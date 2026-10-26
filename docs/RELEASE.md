@@ -42,7 +42,8 @@ apksigner verify --print-certs app/build/outputs/apk/github/release/app-github-r
 
 - `versionName` / `versionCode` live in `app/build.gradle.kts`
 - Tag releases as `vX.Y.Z` matching `versionName`
-- Update `CHANGELOG.md` (or GitHub Release notes) with user-facing changes
+- Add `fastlane/metadata/android/<locale>/changelogs/<versionCode>.txt` for the store listing
+- Update GitHub Release notes with user-facing changes
 
 ## Application identity
 
@@ -60,13 +61,14 @@ The v1.2.28 release key has certificate SHA-256
 `f5fc56a9af5460e40e06761a6c2957d96cc1d987a816601a6137c606f062952b`.
 
 Existing installs signed with the previous key cannot update in place. Users must
-export their app data and reinstall, or keep the old installation. The new key does
-not affect Google Play installs signed by Play App Signing, but the GitHub and
-self-hosted F-Droid APKs use the new key.
+copy out any workspace files they need, uninstall, and reinstall. Settings and
+sessions may not carry over. Users can keep the old installation instead. The new
+key does not affect Google Play installs signed by Play App Signing, but the GitHub
+and self-hosted F-Droid APKs use the new key.
 
-The F-Droid metadata snapshot below still describes v1.2.27 and keeps the old
-`AllowedAPKSigningKeys` fingerprint. Update that field to the new fingerprint when
-submitting v1.2.28 to fdroiddata.
+The F-Droid metadata snapshot below describes v1.2.28 and uses the new
+`AllowedAPKSigningKeys` fingerprint. The live fdroiddata merge request still
+needs the same update.
 
 ## Pre-release checklist
 
@@ -119,14 +121,14 @@ The workflow retains the latest 100 non-draft, non-prerelease GitHub releases.
 ## Official F-Droid catalog (build-from-source)
 
 The self-hosted repository above only republishes the GitHub-signed APK; it does
-not put Soriano Code in the official F-Droid catalog (browsable by category, e.g.
-"AI Chat"). That requires F-Droid's own build server to compile the app from
+not put Soriano Code in the official F-Droid catalog (browsable by category, for
+example "AI Chat"). That requires F-Droid's own build server to compile the app from
 source, which does not accept Firebase/Google Play services.
 
 The `app` module has a `distribution` flavor dimension for this:
 
-- `github` — current behavior, includes Firebase Analytics/Crashlytics.
-- `fdroid` — no Firebase code at all (`app/src/fdroid/.../diagnostics/`
+- `github` - current behavior, includes Firebase Analytics/Crashlytics.
+- `fdroid` - no Firebase code at all (`app/src/fdroid/.../diagnostics/`
   provides no-op `AnalyticsReporter`/`CrashReporter` in place of
   `app/src/github/.../diagnostics/`, which keeps the Firebase-backed ones).
 
@@ -151,9 +153,9 @@ applied would still embed inert Google project identifiers in the fdroid build).
 Submitting to the official catalog means opening a merge request against
 [fdroiddata](https://gitlab.com/fdroid/fdroiddata). This has been done:
 [!48005](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/48005). The
-metadata below is a snapshot of the branch at the time of writing (v1.2.27);
-the live copy is the MR itself. Before submitting v1.2.28, update `versionName`,
-`versionCode`, and `commit` in the snapshot to the tagged release commit.
+metadata below is updated for v1.2.28; the live copy is the MR itself. The live
+MR also needs the updated `versionName`, `versionCode`, `commit`, and
+`AllowedAPKSigningKeys` values.
 
 ```yaml
 AntiFeatures:
@@ -182,9 +184,9 @@ Binaries:
   https://github.com/soriano-glitch/soriano-code/releases/download/v%v/soriano-code-v%v-fdroid-release.apk
 
 Builds:
-  - versionName: 1.2.27
-    versionCode: 66
-    commit: db8ed2e86e7f32b4b9151c0bd1d7ba974a1dcb5a
+  - versionName: 1.2.28
+    versionCode: 67
+    commit: f746fdb0bdbb80647c6f83e1fb81414bbb77e587
     subdir: app
     sudo:
       - apt-get update
@@ -208,12 +210,12 @@ Builds:
       - sorianocode.fdroidBuild=true
       - sorianocode.sourceNativeLibs=true
 
-AllowedAPKSigningKeys: f036e07002d8c2e6a5a64000f1211398d4831ff37cf280456a9a26d2f12617df
+AllowedAPKSigningKeys: f5fc56a9af5460e40e06761a6c2957d96cc1d987a816601a6137c606f062952b
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
-CurrentVersion: 1.2.27
-CurrentVersionCode: 66
+CurrentVersion: 1.2.28
+CurrentVersionCode: 67
 ```
 
 This is the exact field order/quoting `fdroid rewritemeta` produces (it also
@@ -222,20 +224,20 @@ the MR's discussion thread, not in the metadata itself).
 
 `AllowedAPKSigningKeys` is the SHA-256 of the app's signing certificate,
 extracted directly from a published release APK's APK Signing Block v2 (not
-from the keystore) — `keytool`/`apksigner` weren't available locally, so this
+from the keystore) - `keytool`/`apksigner` weren't available locally, so this
 was parsed by hand from the APK's binary signing block. `Binaries:` is a URL
 template (`%v` = versionName) F-Droid's build server uses to fetch the
 officially-published binary and diff it against what it builds from source,
 as a supply-chain check.
 
 The `Binaries:` URL points at a `-fdroid-release.apk` asset, not the plain
-`-release.apk` one — the latter is the `github` flavor (Firebase included)
+`-release.apk` one - the latter is the `github` flavor (Firebase included)
 and will never byte-diff-match a `fdroid` flavor build. The Release workflow
 (`.github/workflows/release.yml`) compiles the native runtime payload from the
 pinned Termux recipes and then runs
 `./gradlew -Psorianocode.fdroidBuild=true -Psorianocode.sourceNativeLibs=true :app:assembleFdroidRelease`
 (deliberately without `GITHUB_CLIENT_ID`, matching how F-Droid's own build server
 invokes it) and publishes that APK alongside the existing assets so this comparison
-has something correct to compare against — and so no prebuilt binary is shipped. It's
+has something correct to compare against - and so no prebuilt binary is shipped. It's
 signed with the same release signing config as the `github` flavor, hence the shared
 `AllowedAPKSigningKeys` fingerprint above.
